@@ -14,6 +14,7 @@ from io import StringIO
 import os
 from dotenv import load_dotenv
 import tempfile
+import logging
 
 ### SETUP ###
 # (Taxonomy1List) tax 1 list = https://4535487.app.netsuite.com/app/common/search/searchresults.nl?searchid=4125&saverun=T&whence=
@@ -24,7 +25,7 @@ import tempfile
 
 def calculate_kpi():
     load_dotenv()
-
+    logging.info('Starting KPI Execution')
     #connecting to azure storage and container
     connectionString1 = os.environ["connectionString1"]
     blobConnect = BlobServiceClient.from_connection_string(connectionString1)
@@ -374,5 +375,5 @@ def calculate_kpi():
 
     with open(file=outputPath,mode="rb") as outputData:
         uploadBlobClient.upload_blob(outputData, overwrite=True)
-
+    logging.info('Ending Execution')
 calculate_kpi()
