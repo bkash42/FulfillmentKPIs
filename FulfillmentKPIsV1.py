@@ -373,6 +373,6 @@ def calculate_kpi():
     uploadBlobClient = blobConnect.get_blob_client(container=containerName, blob="kpiOutput.csv")
 
     with open(file=outputPath,mode="rb") as outputData:
-        uploadBlobClient.upload_blob(outputData)
+        uploadBlobClient.upload_blob(outputData, overwrite=True)
 
 calculate_kpi()
