@@ -7,9 +7,8 @@ from FulfillmentKPIsV1 import calculate_kpi
 
 app = func.FunctionApp()
 
-@app.function_name(name="myTimer")
 @app.schedule(schedule="0 */5 * * * *", arg_name="myTimer", run_on_startup=False) 
-def TimerTrigger(myTimer: func.TimerRequest) -> None:
+def test_function(test_timer: func.TimerRequest) -> None:
     utc_timestamp = datetime.datetime.utcnow().replace(
         tzinfo=datetime.timezone.utc).isoformat()
     calculate_kpi()
